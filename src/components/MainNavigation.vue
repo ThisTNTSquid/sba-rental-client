@@ -10,7 +10,18 @@ div
           v-list-tile-title(v-html='user.name')
           v-list-tile-sub-title(v-if="user.isAdmin") Administrator
         v-list-tile-action
-          v-icon keyboard_arrow_down
+          v-menu(bottom)
+            v-btn(icon slot="activator")
+              v-icon keyboard_arrow_down
+            v-list
+              v-list-tile(@click="")
+                v-list-tile-title 
+                  v-icon build
+                  span.ml-3 Settings
+              v-list-tile(@click="")
+                v-list-tile-title 
+                  v-icon exit_to_app
+                  span.ml-3 Logout
     v-divider
     
     v-list
