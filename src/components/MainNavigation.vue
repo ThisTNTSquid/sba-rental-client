@@ -1,8 +1,28 @@
 <template lang="pug">
 div
-  v-navigation-drawer(persistent='' clipped v-model='isActive', enable-resize-watcher, app ,)
+  v-navigation-drawer(persistent='' clipped v-model='isActive', enable-resize-watcher, app)
     v-list
-      v-list-tile(v-for='(item, i) in items', :key='i' exact :to="item.to")
+      v-list-tile(avatar)
+        v-list-tile-avatar
+          img(src='../assets/user.png') 
+          // TODO: Make this back to use dynamic content
+        v-list-tile-content
+          v-list-tile-title(v-html='user.name')
+          v-list-tile-sub-title(v-if="user.isAdmin") Administrator
+        v-list-tile-action
+          v-icon keyboard_arrow_down
+    v-divider
+    
+    v-list
+      v-subheader Overview
+      v-list-tile(v-for='(item, i) in overviewItems', :key='i' exact :to="item.to")
+        v-list-tile-action
+          v-icon(light='', v-html='item.icon')
+        v-list-tile-content
+          v-list-tile-title(v-text='item.title')
+    v-list
+      v-subheader Management
+      v-list-tile(v-for='(item, i) in managementItems', :key='i' exact :to="item.to")
         v-list-tile-action
           v-icon(light='', v-html='item.icon')
         v-list-tile-content
@@ -10,18 +30,59 @@ div
   </template>
 <script>
 export default {
-  data(){
-    return{
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire',
-        to: '/'
-      }],
+  data() {
+    return {
+      user: {
+        //TODO: Make this part dynamic
+        avatar: '',
+        name: 'Demo User',
+        username: 'demo',
+        isAdmin: true
+      },
+      overviewItems: [
+        {
+          icon: 'apps',
+          title: 'Dashboard',
+          to: '/'
+        },
+        {
+          icon: 'business',
+          title: 'Companies',
+          to: '/business'
+        },
+        {
+          icon: 'shop',
+          title: 'Shops',
+          to: '/shop'
+        },
+        {
+          icon: 'fa-cube',
+          title: 'Shops',
+          to: '/merchandise'
+        }
+      ],
+      managementItems: [
+        {
+          icon: 'people',
+          title: 'Staffs',
+          to: '/staff'
+        },
+        {
+          icon: 'receipt',
+          title: 'Payment Records',
+          to: '/payment-records'
+        },
+        {
+          icon: 'fa-certificate',
+          title: 'Rental Agreements',
+          to: '/agreements'
+        }
+      ]
     }
   },
-  computed:{
-    isActive:{
-      get(){
+  computed: {
+    isActive: {
+      get() {
         return this.$store.state.sidebar
       },
       set(val) {

@@ -1,30 +1,16 @@
-<template>
-  <v-app light>
-    <main-navigation></main-navigation>
-    <main-toolbar></main-toolbar>
-    
-    
-    <main>
-      <v-content>
-        <v-container fluid>
-          <v-slide-y-transition mode="out-in">
-            <v-layout column align-center>
-              <img src="/static/v.png" alt="Vuetify.js" class="mb-5">
-              <blockquote>
-                &#8220;First, solve the problem. Then, write the code.&#8221;
-                <footer>
-                  <small>
-                    <em>&mdash;John Johnson</em>
-                  </small>
-                </footer>
-              </blockquote>
-            </v-layout>
-          </v-slide-y-transition>
-        </v-container>
-      </v-content>
-    </main>
-    <main-footer></main-footer>
-  </v-app>
+<template lang="pug">
+  v-app(light='')
+    main-navigation
+    main-toolbar
+    main
+      v-content
+        v-container(fluid='')
+          v-slide-y-transition(mode='out-in')
+          // NOTE: The layout is defined each page
+          // v-layout(column='', align-center='')
+            router-view
+    main-footer
+
 </template>
 
 <script>

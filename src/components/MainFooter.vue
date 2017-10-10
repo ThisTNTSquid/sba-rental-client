@@ -2,6 +2,8 @@
 div
   v-footer(fixed=false, app='')
     span © 2017 ThisTNTSquid, Created exclusively for SBA project
+    v-spacer
+    span v.0.1-alpha
 </template>
 <script>
 
