@@ -27,6 +27,14 @@ div
           v-icon(light='', v-html='item.icon')
         v-list-tile-content
           v-list-tile-title(v-text='item.title')
+
+    v-list
+      v-subheader Mall Controls
+      v-list-tile(v-for='(item, i) in mallItems', :key='i' exact :to="item.to" ripple)
+        v-list-tile-action
+          v-icon(light='', v-html='item.icon')
+        v-list-tile-content
+          v-list-tile-title(v-text='item.title')
   </template>
 <script>
 import Ripple from 'vuetify'
@@ -61,7 +69,7 @@ export default {
         },
         {
           icon: 'fa-cube',
-          title: 'Shops',
+          title: 'Merchandise',
           to: '/merchandise'
         }
       ],
@@ -80,6 +88,18 @@ export default {
           icon: 'fa-certificate',
           title: 'Rental Agreements',
           to: '/agreement'
+        }
+      ],
+      mallItems: [
+        {
+          icon: 'list',
+          title: 'Floors',
+          to: '/mall/floors'
+        },
+        {
+          icon: 'accessibility',
+          title: 'Give me a hug',
+          to: '/thanks'
         }
       ]
     }
