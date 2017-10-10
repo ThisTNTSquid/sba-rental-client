@@ -50,20 +50,22 @@ div
     v-card
       v-card-text
         h5 Floors
-        v-divider
         v-list
-          v-list-tile
-            v-list-content.mr-2
-              v-list-tile-title G/F
-            v-chip(color="grey lighten-3" v-for="shop in shops.ground" :key="shop" @click="") {{shop}}
-          v-list-tile
-            v-list-content
-              v-list-tile-title B1/F
-            v-chip(color="grey lighten-3" v-for="shop in shops.b1" :key="shop" @click="") {{shop}}
-          v-list-tile
-            v-list-content
-              v-list-tile-title B2/F
-            v-chip(color="grey lighten-3" v-for="shop in shops.b2" :key="shop" @click="") {{shop}}
+          v-list-tile.mb-3
+            v-layout(list-grid wrap)
+              v-list-content.mr-2
+                v-list-tile-title G/F
+              v-chip(color="grey lighten-3" v-for="shop in shops.ground" :key="shop" @click="") {{shop}}
+          v-list-tile.mb-3
+            v-layout(list-grid wrap)
+              v-list-content
+                v-list-tile-title B1/F
+              v-chip(color="grey lighten-3" v-for="shop in shops.b1" :key="shop" @click="") {{shop}}
+          v-list-tile.mb-3
+            v-layout(list-grid wrap)
+              v-list-content
+                v-list-tile-title B2/F
+              v-chip(color="grey lighten-3" v-for="shop in shops.b2" :key="shop" @click="") {{shop}}
 </template>
 <script>
 export default {
@@ -97,7 +99,7 @@ export default {
         },
       ],
       shops:{
-        ground: ["hahaha","abcdefg","sjsjsjs","poitttjj","slslslss","alskdjlsakdjsd","sdlkjlkj"],
+        ground: ["hahaha","abcdefg","sjsjsjs","poitttjj","slslslss","alskdjlsakdjsd","sdlkjlkj","This shop name is so fking long gg","muahahahah"],
         b1: ["a","s","o","0"],
         b2: ["ccc","pppp","098098"]
       }
