@@ -50,22 +50,30 @@ div
     v-card
       v-card-text
         h5 Floors
-        v-list
-          v-list-tile.mb-3
-            v-layout(list-grid wrap)
-              v-list-content.mr-2
-                v-list-tile-title G/F
-              v-chip(color="grey lighten-3" v-for="shop in shops.ground" :key="shop" @click="") {{shop}}
-          v-list-tile.mb-3
-            v-layout(list-grid wrap)
-              v-list-content
-                v-list-tile-title B1/F
-              v-chip(color="grey lighten-3" v-for="shop in shops.b1" :key="shop" @click="") {{shop}}
-          v-list-tile.mb-3
-            v-layout(list-grid wrap)
-              v-list-content
-                v-list-tile-title B2/F
-              v-chip(color="grey lighten-3" v-for="shop in shops.b2" :key="shop" @click="") {{shop}}
+        v-expansion-panel(expand=true)
+          v-expansion-panel-content
+            div(slot="header") G/F
+            v-divider
+            v-card
+              v-card-text
+                a(href="#")
+                  v-chip(color="grey lighten-3" v-for="shop in shops.ground" :key="shop" ) {{shop}}
+        v-expansion-panel(expand)
+          v-expansion-panel-content
+            div(slot="header") B1/F
+            v-divider
+            v-card
+              v-card-text
+                a(href="#")
+                  v-chip(color="grey lighten-3" v-for="shop in shops.b1" :key="shop" ) {{shop}}
+        v-expansion-panel(expand)
+          v-expansion-panel-content
+            div(slot="header") B2/F
+            v-divider
+            v-card
+              v-card-text
+                a(href="#")
+                  v-chip(color="grey lighten-3" v-for="shop in shops.b2" :key="shop" ) {{shop}}
 </template>
 <script>
 export default {
