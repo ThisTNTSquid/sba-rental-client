@@ -10,6 +10,6 @@ div
 </script>
 <style lang="stylus" scoped>
 span{
-  color #888
+  color #aaa
 }
 </style>

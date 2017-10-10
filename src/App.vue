@@ -6,9 +6,10 @@
       v-content
         v-container(fluid='')
           v-slide-y-transition(mode='out-in')
-          // NOTE: The layout is defined each page
-          // v-layout(column='', align-center='')
             router-view
+          //-NOTE: The layout is defined each page
+          //- v-layout(column='', align-center='')
+            
     main-footer
 
 </template>
