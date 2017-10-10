@@ -7,7 +7,7 @@
         v-container(fluid='')
           v-slide-y-transition(mode='out-in')
             router-view
-          //-NOTE: The layout is defined each page
+          //- //? The layout is defined each page
           //- v-layout(column='', align-center='')
             
     main-footer
@@ -30,7 +30,6 @@ import mainFooter from './components/MainFooter'
       }
     }
   }
-
 </script>
 
 <style lang="stylus">

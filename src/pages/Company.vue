@@ -1,5 +1,5 @@
 <template lang="pug">
-  
+  p blablabla
 </template>
 <script>
 export default {

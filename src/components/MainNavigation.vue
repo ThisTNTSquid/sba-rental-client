@@ -60,7 +60,7 @@ export default {
         {
           icon: 'business',
           title: 'Companies',
-          to: '/business'
+          to: '/company'
         },
         {
           icon: 'shop',

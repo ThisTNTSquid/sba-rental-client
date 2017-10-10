@@ -4,12 +4,16 @@ import Hello from '@/components/Hello'
 
 Vue.use(Router)
 
+function route(path, component){
+  return{
+    path: path,
+    component: ()=> import(`../pages/${component}.vue`)
+  }
+}
+
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    }
+    route('/','Dashboard'),
+    route('/company','Company')
   ]
 })
