@@ -105,7 +105,7 @@ export default {
         {
           icon: 'list',
           title: 'Floors',
-          to: '/mall/floors'
+          to: '/floors'
         },
         {
           icon: 'accessibility',

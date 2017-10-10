@@ -3,8 +3,8 @@ v-toolbar(fixed='', app='', clipped-left dark).cyan
   v-toolbar-side-icon(@click.stop='toggleDrawer()', dark)
   v-toolbar-title(v-text='title' )
   v-spacer
-  v-toolbar-title FUCK OFF WONG KA FAI, USE
-  v-btn(icon dark)
+  v-toolbar-title
+  v-btn(icon dark href="https://github.com/ThisTNTSquid/sba-rental-client" target="_blank")
     v-icon fa-github
 </template>
 <script>

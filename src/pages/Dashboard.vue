@@ -79,12 +79,13 @@ div
 export default {
   data() {
     return {
+      messagePopup: false,
       //todo again, make this dynamic
-      shopsNo: 80,
-      maxShops: 175,
-      tenantsNo: 5,
-      companies: 8,
-      messages: [
+      shopsNo: 80, // SELECT count(*) as shopsNo from location WHERE shop_id IS NOT NULL
+      maxShops: 175, // SELECT count(*) as maxShops from location
+      tenantsNo: 5, // SELECT count(*) from tenant
+      companies: 8, // SELECT count(*) from company
+      messages: [ // UNIMPLEMENTED 
         {
           type: 'announce',
           content: 'Rent will increate by 10% later',
@@ -106,7 +107,7 @@ export default {
           time: '12:08AM 10/11/2017'
         },
       ],
-      shops:{
+      shops:{ // SELECT name,floor FROM shop JOIN location ON shop.id=location.shop_id WHERE floor=[the floor]
         ground: ["hahaha","abcdefg","sjsjsjs","poitttjj","slslslss","alskdjlsakdjsd","sdlkjlkj","This shop name is so fking long gg","muahahahah"],
         b1: ["a","s","o","0"],
         b2: ["ccc","pppp","098098"]
