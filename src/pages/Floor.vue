@@ -17,19 +17,22 @@
                   v-flex(xs12='')
                     v-select(:items="form.floors" label="Floor" v-model="form.selectedFloor" bottom autocomplete required)
                   v-flex(xs12='')
-                    v-text-field(label='Flat Number', required hint="64, 25, 155" persistent-hint mask="###")
+                    v-text-field(label='Flat Number', required hint="64, 25, 155" persistent-hint mask="###" v-model="form.flatNumber")
                   v-flex(xs12='', sm6='')
-                    v-select(label='Shop', required='', :items="shops" v-model="form.selectedShop")
+                    v-select(label='Shop', required='', :items="shops" item-text="name" item-value="id" v-model="form.selectedShop")
                   v-flex(xs12='', sm6='')
-                    v-select(label='Interests', multiple='', autocomplete='', chips='', :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']")
+                    v-text-field(label='Flat Size', required hint="390, 350, 155" persistent-hint mask="####" v-model="form.flatSize")
               small *indicates required field
             v-card-actions
               v-spacer
               v-btn(color='primary darken-1', flat='', @click.native='dialog = false') Close
-              v-btn(color='primary darken-1', flat='', @click.native='dialog = false') Save
+              v-btn(color='primary darken-1', flat='', @click.native='saveForm') Save
 
 </template>
 <script>
+import config from '../config/config'
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -41,19 +44,30 @@ export default {
         flatNumber: "",
         flatSize: "",
         selectedShop: ""
-      }
+      },
+      shops: ""
     }
   },
   computed:{
     //TODO Unfinished logic
     shops: ()=>{
       return 
-    } //SELECT id,name from SHOP
+    } //
   },
   methods: {
-    saveForm: function() {
+    saveForm: async function() {
+      let q1 = await axios(config.api.hostname+encodeURIComponent("INSERT INTO `rental_manager`.`location` (`floor`, `flat`, `size`) VALUES ('"+this.form.selectedFloor+"', '"+this.form.flatNumber+"', '"+this.form.flatSize+"')"))
+      console.log(q1)
+      this.dialog=false
+    },
+    async getInfo(){
+      let q1 = await axios(config.api.hostname + encodeURIComponent("SELECT id,name from SHOP"))
+      this.shops=q1.data
 
     }
+  },
+  mounted(){
+    this.getInfo()
   }
 }
 </script>

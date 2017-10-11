@@ -82,7 +82,6 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      //! HARDCODE ALERT
       shopsNo: 80, // SELECT count(*) as shopsNo from location WHERE shop_id IS NOT NULL
       maxShops: 175, // SELECT count(*) as maxShops from location
       tenantsNo: 5, // SELECT count(*) from tenant
