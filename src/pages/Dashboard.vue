@@ -57,7 +57,7 @@ div
             v-card
               v-card-text
                 a(href="#")
-                  v-chip(color="grey lighten-3" v-for="shop in shops.ground" :key="shop" ) {{shop}}
+                  v-chip(color="grey lighten-3" v-for="shop in shops.ground" :key="shop" ) {{shop.name}}
         v-expansion-panel(expand)
           v-expansion-panel-content
             div(slot="header") B1/F
@@ -65,7 +65,7 @@ div
             v-card
               v-card-text
                 a(href="#")
-                  v-chip(color="grey lighten-3" v-for="shop in shops.b1" :key="shop" ) {{shop}}
+                  v-chip(color="grey lighten-3" v-for="shop in shops.b1" :key="shop" ) {{shop.name}}
         v-expansion-panel(expand)
           v-expansion-panel-content
             div(slot="header") B2/F
@@ -73,16 +73,27 @@ div
             v-card
               v-card-text
                 a(href="#")
-                  v-chip(color="grey lighten-3" v-for="shop in shops.b2" :key="shop" ) {{shop}}
+                  v-chip(color="grey lighten-3" v-for="shop in shops.b2" :key="shop" ) {{shop.name}}
 </template>
 <script>
-import request from '../service/request'
+import config from '../config/config'
+import axios from 'axios'
 
 export default {
   data() {
     return {
+      //! HARDCODE ALERT
+      shopsNo: 80, // SELECT count(*) as shopsNo from location WHERE shop_id IS NOT NULL
+      maxShops: 175, // SELECT count(*) as maxShops from location
+      tenantsNo: 5, // SELECT count(*) from tenant
+      companies: 8, // SELECT count(*) from company
+      shopPercent: 0,
+      shops: {  // SELECT name,floor FROM shop JOIN location ON shop.id=location.shop_id WHERE floor=[the floor]
+        ground: ["hahaha", "abcdefg", "sjsjsjs", "poitttjj", "slslslss", "alskdjlsakdjsd", "sdlkjlkj", "This shop name is so fking long gg", "muahahahah"],
+        b1: ["a", "s", "o", "0"],
+        b2: ["ccc", "pppp", "098098"]
+      },
       messagePopup: false,
-      //todo again, make this dynamic
       messages: [ // UNIMPLEMENTED 
         {
           type: 'announce',
@@ -109,23 +120,41 @@ export default {
     }
   },
   computed: {
-    shopPercent: function() {
-      return this.shopsNo / this.maxShops * 100
-    },
-    //! HARDCODE DETECTED
-    shopsNo: function() { return 80 }, // SELECT count(*) as shopsNo from location WHERE shop_id IS NOT NULL
-    maxShops: function() { return 175 }, // SELECT count(*) as maxShops from location
-    tenantsNo: function() { return 5 }, // SELECT count(*) from tenant
-    companies: function() { return 8 }, // SELECT count(*) from company
-    shops: function() {
-      return {  // SELECT name,floor FROM shop JOIN location ON shop.id=location.shop_id WHERE floor=[the floor]
-        ground: ["hahaha", "abcdefg", "sjsjsjs", "poitttjj", "slslslss", "alskdjlsakdjsd", "sdlkjlkj", "This shop name is so fking long gg", "muahahahah"],
-        b1: ["a", "s", "o", "0"],
-        b2: ["ccc", "pppp", "098098"]
-      }
-    }
+
+
+
   },
   methods: {
+    async getData() {
+      // SELECT count(*) as shopsNo from location WHERE shop_id IS NOT NULL
+      let q1 = await axios(config.api.hostname + encodeURIComponent("SELECT count(*) as shopsNo from location WHERE shop_id IS NOT NULL"))
+      this.shopsNo = q1.data[0].shopsNo
+
+      // SELECT count(*) as maxShops from location
+      let q2 = await axios(config.api.hostname + encodeURIComponent("SELECT count(*) as maxShops from location"))
+      this.maxShops = q2.data[0].maxShops
+
+      // SELECT count(*) from tenant
+      let q3 = await axios(config.api.hostname + encodeURIComponent("SELECT count(*) as tc from tenant"))
+      this.tenantsNo = q3.data[0].tc
+
+      //SELECT count(*) from company
+      let q4 = await axios(config.api.hostname + encodeURIComponent("SELECT count(*) as cc from company"))
+      this.companies = q4.data[0].cc
+      console.log(this.companies)
+
+
+      let q5 = await axios(config.api.hostname + encodeURIComponent("SELECT DISTINCT name FROM shop JOIN location ON shop.id=location.shop_id WHERE floor='G'"))
+      this.shops.ground = q5.data
+
+      q5 = await axios(config.api.hostname + encodeURIComponent("SELECT DISTINCT name FROM shop JOIN location ON shop.id=location.shop_id WHERE floor='B1'"))
+      this.shops.b1 = q5.data
+
+      q5 = await axios(config.api.hostname + encodeURIComponent("SELECT DISTINCT name FROM shop JOIN location ON shop.id=location.shop_id WHERE floor='B2'"))
+      this.shops.b2 = q5.data
+
+      this.shopPercent = this.shopsNo / this.maxShops * 100
+    },
     getColor: function(type) {
 
       if (type == 'error') {
@@ -148,6 +177,9 @@ export default {
       }
 
     }
+  },
+  mounted() {
+    this.getData()
   }
 }
 </script>
