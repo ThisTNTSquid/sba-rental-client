@@ -50,18 +50,11 @@ div
 <script>
 import Ripple from 'vuetify'
 export default {
-  components:{
+  components: {
     Ripple
   },
   data() {
     return {
-      user: {
-        //TODO: Make this part dynamic
-        avatar: '',
-        name: 'Demo User',
-        username: 'demo',
-        isAdmin: true
-      },
       overviewItems: [
         {
           icon: 'apps',
@@ -122,6 +115,15 @@ export default {
       },
       set(val) {
         this.$store.commit('SIDEBAR', val)
+      }
+    },
+    user: function() {
+      return {
+        //! HARDCODE DETECTED
+        avatar: '',
+        name: 'Demo User',
+        username: 'demo',
+        isAdmin: true
       }
     }
   }

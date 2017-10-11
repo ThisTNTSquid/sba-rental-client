@@ -14,6 +14,8 @@ function route(path, component){
 export default new Router({
   routes: [
     route('/','Dashboard'),
-    route('/company','Company')
+    route('/company','Company'),
+    route('/floors','Floor'),
+    route('/merchandise','Merchandise')
   ]
 })
