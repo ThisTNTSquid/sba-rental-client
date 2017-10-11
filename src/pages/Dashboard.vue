@@ -107,10 +107,10 @@ export default {
           time: '12:08AM 10/11/2017'
         },
       ],
-      shops:{ // SELECT name,floor FROM shop JOIN location ON shop.id=location.shop_id WHERE floor=[the floor]
-        ground: ["hahaha","abcdefg","sjsjsjs","poitttjj","slslslss","alskdjlsakdjsd","sdlkjlkj","This shop name is so fking long gg","muahahahah"],
-        b1: ["a","s","o","0"],
-        b2: ["ccc","pppp","098098"]
+      shops: { // SELECT name,floor FROM shop JOIN location ON shop.id=location.shop_id WHERE floor=[the floor]
+        ground: ["hahaha", "abcdefg", "sjsjsjs", "poitttjj", "slslslss", "alskdjlsakdjsd", "sdlkjlkj", "This shop name is so fking long gg", "muahahahah"],
+        b1: ["a", "s", "o", "0"],
+        b2: ["ccc", "pppp", "098098"]
       }
     }
   },
@@ -148,9 +148,5 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-// .list__tile__sub-title, 
-// .list__tile__title {
-//     white-space: normal
-// }
 </style>
 
