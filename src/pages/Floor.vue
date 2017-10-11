@@ -45,7 +45,8 @@ export default {
         flatSize: "",
         selectedShop: ""
       },
-      shops: ""
+      shops: "",
+      floorList: ""
     }
   },
   computed:{
@@ -63,6 +64,8 @@ export default {
     async getInfo(){
       let q1 = await axios(config.api.hostname + encodeURIComponent("SELECT id,name from SHOP"))
       this.shops=q1.data
+
+      //TODO q1= await axios(config.api.hostname + encodeURIComponent(""))
 
     }
   },
