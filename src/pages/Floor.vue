@@ -22,7 +22,7 @@
                     v-select(label='Shop', required='', :items="shops" item-text="name" item-value="id" v-model="form.selectedShop")
                   v-flex(xs12='', sm6='')
                     v-text-field(label='Flat Size', required hint="390, 350, 155" persistent-hint mask="####" v-model="form.flatSize")
-              small *indicates required field
+              small * indicates required field
             v-card-actions
               v-spacer
               v-btn(color='primary darken-1', flat='', @click.native='dialog = false') Close
