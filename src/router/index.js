@@ -16,6 +16,7 @@ export default new Router({
     route('/','Dashboard'),
     route('/company','Company'),
     route('/floors','Floor'),
-    route('/merchandise','Merchandise')
+    route('/merchandise','Merchandise'),
+    route('/thanks','Thanks')
   ]
 })
